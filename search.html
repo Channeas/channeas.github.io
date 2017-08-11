@@ -1,0 +1,158 @@
+<!-- Tala om att det är html-dokument -->
+<!DOCTYPE html>
+
+<!-- Alla element ska finnas inom html-taggen -->
+<html>
+<!-- I head placeras saker som inte är innehåll, tex css-filer och javascript -->
+<head>
+    <!-- Dessa 3 meta-taggar måste vara först i head för att alla tecken (åäö) och Bootstrap ska fungera korrekt -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Koppla in Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- Koppla in egen CSS-fil style.css OBS! Ha den som sista css-fil -->
+    <link rel="stylesheet" type ="text/css" href="css/style.css">
+
+    <!-- Koppla in och JQuery Bootstrap javascript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+    <!-- Firebasescript -->
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <!-- Koppla in egen JavaScript-fil funktion.js OBS! Ha den som sista js-fil -->
+    <!--<script type="text/javascript" src="js/funktion.js"></script>-->
+
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!-- I title skriver du titeln som webbläsarfönstret ska ha när den här sidan besöks-->
+    <title>Sökresultat</title>
+    <link rel="shortcut icon" href="#">
+</head>
+<body>
+    <div class="container-fluid row">
+        <div class="openbutton"> <!-- Öppningsknappen till menyn -->
+            <i class="fa fa-bars fa-3x" aria-hidden="true" onclick="openNav();"></i>
+        </div>
+        <div id="mysidenav" class="meny sidenav">
+            <nav class="navbar navbar-default navbar-fixed-side">
+                <ul class="nav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="openNav()">&times;</a>
+                    <li class="limeny" id="alt1"><a href="index.html">Om hemsidan</a></li>
+                    <li class="limeny" id="alt2"><a href="programmering.html">Programmering</a></li>
+                    <li class="limeny" id="alt3"><a href="projekt.html">Projekt</a></li>
+                    <li class="limeny" id="alt4"><a href="arduino.html">Om Arduino</a></li>
+                    <li class="limeny"> <!-- Söktabben + förstoringsglaset -->
+                    <i class="fa fa-search fa-3x" aria-hidden="true"></i>
+                    <form id="searchbar" search=true; "method="GET" action="search.html">
+                        <input type="text" name="searchtb" placeholder="Search.. " id="searchterm" class="searchtab" onkeypress="searchEnter()">
+                    </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-sm-10 bigheader"> <!-- Sidans content -->
+            <span class="bigheaderspan">
+                <h1 class="txt">
+                    Sökresultat
+                </h1>
+            </span>
+            <div class="content-wrapper txt">
+                <!--<form id="bgsearchbar" search=true; "method="GET" action="search.html">
+                    <input type="text" name="search" placeholder="Search .. " class="bgsearchtab">
+                </form>-->
+                <div class="trm">
+                    <h3 class="term">Sökterm:   <h3 id="termviewer" class="term"> </h1> </h1> <!--<pre id ="termviewer" class ="term"> Searchterm: </pre>--> 
+                </div>
+
+                <ul id="resultlist">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyDUPVrFCy1s530DFuXw5SNZyvrxxwOzKRM",
+    authDomain: "hello-world-databas.firebaseapp.com",
+    databaseURL: "https://hello-world-databas.firebaseio.com",
+    projectId: "hello-world-databas",
+    storageBucket: "hello-world-databas.appspot.com",
+    messagingSenderId: "324171770997"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script> // Hämta vad som står i url:en
+
+var url = window.location;
+var searchParam = new URL(url).searchParams.get("searchtb");
+//alert(searchParam);
+
+</script>
+
+
+<script>
+    //Hämta datan från firebase och omvandla den till en lista
+    var url = window.location;
+    var filter = new URL(url).searchParams.get("searchtb");
+
+    document.getElementById("termviewer").innerText = filter;
+
+    const resultlist = $("#resultlist");
+
+    const dbRefObject = firebase.database().ref().child("object");
+    const dbRefResultlist = dbRefObject.child("links");
+
+    const dbRefTest = firebase.database().ref().child("links");
+
+    dbRefTest.on("value", snap => {
+        console.log(snap.val());
+    })
+
+    dbRefTest.on("child_added", snap => {
+    console.log(snap.val());
+    console.log(snap.key);
+
+    if (snap.val().toLowerCase().indexOf(filter.toLowerCase()) > -1) 
+    { 
+        resultlist.append('<li><a href="' + snap.val() + '">' + snap.key + '</a></li>');
+    }
+
+});
+
+    function openNav() { // Knappen för att öppna menyn
+        $("#mysidenav").toggleClass("sidenav-width");
+        navOut = !navOut;
+    }
+
+    function closeNav() { /* Knappen för att stänga menyn */
+        document.getElementById("sidenav").style.width = "0";
+        console.log(navOut);
+    }
+
+    function myFunction() {
+        // Declare variables
+        var /*input,*/ filter, li, a, i;
+        //input = document.getElementById('myInput');
+        filter = resultlist.value.toUpperCase();
+        li = resultlist.getElementsByTagName('li');
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+            }
+        }
+    }
+</script>
+</body>
+</html>

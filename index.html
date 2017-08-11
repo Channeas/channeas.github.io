@@ -1,0 +1,77 @@
+<!-- Tala om att det är html-dokument -->
+<!DOCTYPE html>
+
+<!-- Alla element ska finnas inom html-taggen -->
+<html>
+<!-- I head placeras saker som inte är innehåll, tex css-filer och javascript -->
+<head>
+    <!-- Dessa 3 meta-taggar måste vara först i head för att alla tecken (åäö) och Bootstrap ska fungera korrekt -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Koppla in Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- Koppla in egen CSS-fil style.css OBS! Ha den som sista css-fil -->
+    <link rel="stylesheet" type ="text/css" href="css/style.css">
+
+    <!-- Koppla in och JQuery Bootstrap javascript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Firebasescript -->
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <!-- Koppla in egen JavaScript-fil funktion.js OBS! Ha den som sista js-fil -->
+    <script type="text/javascript" src="js/funktion.js"></script>
+
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!-- I title skriver du titeln som webbläsarfönstret ska ha när den här sidan besöks-->
+    <title>Om hemsidan</title>
+    <link rel="shortcut icon" href="#">
+</head>
+
+<!-- I body finns allt innehåll på hemsidan -->
+<body>
+    <div class="container-fluid row">
+        <div class="openbutton"> <!-- Öppningsknappen till menyn -->
+            <i class="fa fa-bars fa-3x" aria-hidden="true" onclick="openNav();"></i>
+        </div>
+        <div id="mysidenav" class="meny sidenav">
+            <nav class="navbar navbar-default navbar-fixed-side">
+                <ul class="nav ">
+                    <a href="javascript:void(0)" class="closebtn" onclick="openNav()">&times;</a>
+                    <li class="limeny" id="alt1"><a href="index.html">Om hemsidan</a></li>
+                    <li class="limeny" id="alt2"><a href="programmering.html">Programmering</a></li>
+                    <li class="limeny" id="alt3"><a href="projekt.html">Projekt</a></li>
+                    <li class="limeny" id="alt4"><a href="arduino.html">Om Arduino</a></li>
+                    <li class="limeny"> <!-- Söktabben + förstoringsglaset -->
+                        <i class="fa fa-search fa-3x" aria-hidden="true"></i>
+                        <form id="searchbar" method="GET" action="search.html">
+                            <input type="text" name="searchtb" placeholder="Search.. " id="searchterm" class="searchtab" onkeypress="searchEnter()">
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-sm-10 bigheader">
+            <span class="bigheaderspan">
+                <h1 class="txt">
+                    Om hemsidan
+                </h1>
+            </span>
+            <div class="content-wrapper txt">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a nisl facilisis, lobortis sapien at, fermentum nisl. Suspendisse eget varius ipsum, in sollicitudin libero. Nunc venenatis malesuada magna, ac semper felis pharetra lacinia. Sed at leo vehicula, venenatis nisl vel, ullamcorper mi. Donec ac rhoncus nisi. Donec ullamcorper tincidunt elementum. Nunc luctus magna cursus mi porta aliquam.
+                </p>
+                <p>
+                    Quisque eu egestas tortor. Nunc consectetur laoreet felis, a tincidunt felis congue eu. Donec posuere erat non lectus porttitor interdum. Cras porta congue dignissim. Aenean augue quam, sagittis ut massa id, ornare commodo urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam ornare dolor magna, dapibus vestibulum diam vulputate non. Nam metus purus, accumsan ut nisi non, dignissim bibendum dui. Donec odio augue, sagittis at maximus at, rutrum ut urna. Integer ac massa justo. Sed a consequat massa. Nulla neque felis, finibus eu odio et, ornare ornare odio.
+                </p>
+                <p>
+                    Praesent pulvinar eu lectus et volutpat. Donec luctus diam non volutpat dictum. Praesent eget enim congue, sagittis ante ac, tristique nibh. Integer tellus justo, ultricies sit amet dolor eu, convallis accumsan est. Duis rhoncus rutrum felis, eget maximus lectus tincidunt ac. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris nunc lectus, tristique non arcu vitae, commodo molestie eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

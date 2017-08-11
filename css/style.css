@@ -1,0 +1,192 @@
+	@font-face /*Lägg till font(s)*/
+	{ 
+		font-family: ubuntu;
+		src: url("../fonts/Ubuntu/ubuntu-regular.ttf");
+	}
+
+	.meny /* CSS-meny*/
+	{		
+		display:inline-block;
+		height: 100%;
+		position: fixed;	
+		z-index: 1;
+		background-color: #111;
+		overflow-x: hidden;
+		font: ubuntu;
+		/*min-width: 20em;*/
+		border: none;  	
+		padding-top:100px;
+		/*box-shadow: 5px 0 10px #888888;*/
+	}
+
+	.meny a /* De individuella knapparna i menyn*/
+	{ 
+		height: 50px;
+		margin-top:0.5em;
+		margin-bottom:0.5em;
+		color: #818181;
+		font-size: 2em;
+		font-family: ubuntu;
+		transition: color 0.25s ease;
+	}
+
+	.navbar-default > .nav > li > a:hover {
+		transition: color 0.5s ease;
+		color: #f1f1f1;
+		background-color: #111;
+	}
+
+	.nav
+	{
+		border: none;	
+		background-color: #111;	
+	}
+
+	.searchtab 
+	{
+		display:inline-block;
+		font-size:1.75em;
+		width: 8em;
+		font-family: ubuntu;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+	}
+
+	#searchbar
+	{
+		display:inline-block;
+	}
+
+	.fa-search
+	{
+		display:block;
+	}
+
+	.bgsearchtab {
+		margin-top: 1em;
+ 		width: 100%;
+ 		font-family: ubuntu;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+	}
+
+	.navbar.navbar-default, .navbar button.navbar-toggle { border: none; } /*Ta bort borders */
+
+	.txt  
+	{
+		font-family: ubuntu;
+	}
+
+	.projektlista
+	{
+		list-style-type: none;
+	}
+
+	.bigheader 
+	{
+		display: inline-block;
+		background-color: #464646;
+		width: 100%;
+		height: 100px;
+		color: #ffffff;
+		box-shadow: 0px 6px 10px #888888;
+		z-index: 8;
+	}
+
+	.bigheaderspan /*Bigheaderspan för att texten ska vara i mitten av div bigheader*/
+	{	
+		display: block;
+		margin-left: 20%;
+		vertical-align: middle;
+	}
+
+
+	.content-wrapper
+	{
+		margin-left: 20%;
+		margin-right:20%;
+		margin-top: 3em;
+		color: #000000;
+
+	}
+
+	#mysidenav 
+	{
+    	transition: 0.5s;
+    	z-index:10;
+    	width: 0;
+	}
+
+	.openbutton  /*Div för menyöppningsknappen*/
+	{
+		display:inline-block;
+		position:fixed;
+		position-left:relative;
+		margin-top:1em;
+		margin-left: 10%;
+		height:52px;
+		width:52px;
+		z-index:9;
+		background-color: #464646;
+		border: 2px solid #464646;
+		border-radius: 4px;
+		text-align: center;
+		padding: 0;
+	}
+
+	.fa-bars /*Öppningsknappen*/
+	{
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	
+		color: white;	
+		
+	}
+
+	.sidenav .closebtn 
+	{
+    	position: absolute;
+	    margin-top:-90px;
+    	right: 25px;
+	    font-size: 36px;
+    	margin-left: 50px;
+    }
+
+
+    .sidenav {
+    	width: 0;
+    }
+
+
+.sidenav-width {
+	width: 270px !important;
+}
+   
+
+@media all and (max-width: 600px) {
+ .sidenav-width {
+
+    	width: 100% !important;
+    	text-align: center;
+
+    }
+   }
+
+   #resultlist {
+   		list-style-type: none;
+   		color:#000000;
+   		text-transform: capitalize;
+   		font-size:2em;
+   }
+
+   #resultlist a {
+   	color:#000000;
+   }
+   .term {
+   	display:inline-block;
+   }
